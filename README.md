@@ -22,9 +22,9 @@ Package Management: Use go mod init <module-name> to initialize a new module. Th
 PlantUml is used for making the classes visible. 
 
 # Documentation for information
-Interfacing:
+- Interfacing:
 https://www.baeldung.com/cs/program-to-interface
-Trunk.yaml:
+- Trunk.yaml:
 https://docs.trunk.io/check/reference/trunk-yaml
-pre-commit (to be implemented):
+-  pre-commit (to be implemented):
 https://pre-commit.com/
