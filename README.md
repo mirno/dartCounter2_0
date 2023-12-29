@@ -37,9 +37,9 @@ PlantUml is used for making the classes visible.
 > Benefits of Using the Interface
 Flexibility: The game logic is not tied to a specific scoring implementation. If you decide to introduce a new scoring system (e.g., a variant of dart scoring rules), you can simply create a new struct that implements the ScoringSystem interface.
 
-Maintainability: Changes to the scoring logic can be made in the specific implementations of the ScoringSystem interface, without affecting the Game struct or other parts of the application.
+> Maintainability: Changes to the scoring logic can be made in the specific implementations of the ScoringSystem interface, without affecting the Game struct or other parts of the application.
 
-Testability: It's easier to test the Game logic by mocking different scoring systems.
+> Testability: It's easier to test the Game logic by mocking different scoring systems.
 
 - Trunk.yaml:
 
