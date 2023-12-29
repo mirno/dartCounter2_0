@@ -1,0 +1,29 @@
+@startuml
+class Game {
+  - players: List<Player>
+  - currentScores: Map<Player, Score>
+  - gameRule: GameRule
+  + startGame()
+  + endGame()
+  + updateScore(player: Player, score: Score)
+}
+
+class Player {
+  - name: String
+  - id: String
+}
+
+class Score {
+  - points: Integer
+  - rounds: Integer
+}
+
+class GameRule {
+  - maxScore: Integer
+  - maxRounds: Integer
+}
+
+Game "1" -- "*" Player
+Game "1" -- "*" Score
+Game "1" o-- "1" GameRule
+@enduml
