@@ -1,33 +1,28 @@
 package game
 
 import (
-    "fmt"
+    "dartCounter/pkg/player"
+    "dartCounter/pkg/scoring"
 )
 
 type Game struct {
-    CurrentScore int
-    TargetLegs   int
-    LegsWon      int
+    Player1       *player.Player
+    Player2       *player.Player
+    ScoringSystem scoring.ScoringSystem
 }
 
-func NewGame(startScore, targetLegs int) *Game {
+func NewGame(p1, p2 *player.Player, scoringSystem scoring.ScoringSystem) *Game {
     return &Game{
-        CurrentScore: startScore,
-        TargetLegs:   targetLegs,
-        LegsWon:      0,
+        Player1:       p1,
+        Player2:       p2,
+        ScoringSystem: scoringSystem,
     }
 }
 
-// UpdateScore updates the game score based on the dart input
-func (g *Game) UpdateScore(score int) {
-    if score <= g.CurrentScore {
-        g.CurrentScore -= score
-        if g.CurrentScore == 0 {
-            g.LegsWon++
-            fmt.Println("Leg won!")
-            if g.LegsWon == g.TargetLegs {
-                fmt.Println("Game won!")
-            }
-        }
-    }
+func (g *Game) UpdateScore(p *player.Player, score int) {
+    g.ScoringSystem.UpdateScore(p, score)
+}
+
+func (g *Game) CheckWinCondition() bool {
+    return g.ScoringSystem.CheckWinCondition(g.Player1, g.Player2)
 }

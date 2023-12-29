@@ -1,29 +1,30 @@
 @startuml
 class Game {
-  - players: List<Player>
-  - currentScores: Map<Player, Score>
-  - gameRule: GameRule
-  + startGame()
-  + endGame()
-  + updateScore(player: Player, score: Score)
+    - player1: Player
+    - player2: Player
+    - scoringSystem: ScoringSystem
+    + StartGame()
+    + UpdateScore(player: Player, score: int)
+    + CheckWinCondition(): boolean
 }
 
 class Player {
-  - name: String
-  - id: String
+    - name: String
+    - score: int
+    - throws: List<int>
+    + AddThrow(score: int)
 }
 
-class Score {
-  - points: Integer
-  - rounds: Integer
+interface ScoringSystem {
+    + UpdateScore(player: Player, score: int)
+    + CheckWinCondition(player1: Player, player2: Player): boolean
 }
 
-class GameRule {
-  - maxScore: Integer
-  - maxRounds: Integer
+class StandardScoring {
+    + UpdateScore(player: Player, score: int)
+    + CheckWinCondition(player1: Player, player2: Player): boolean
 }
 
-Game "1" -- "*" Player
-Game "1" -- "*" Score
-Game "1" o-- "1" GameRule
+Game -right-> ScoringSystem : uses >
+ScoringSystem <|.. StandardScoring : implements
 @enduml
