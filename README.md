@@ -23,8 +23,8 @@ PlantUml is used for making the classes visible.
 
 # Documentation for information
 - Interfacing:
-https://www.baeldung.com/cs/program-to-interface
+@ https://www.baeldung.com/cs/program-to-interface
 - Trunk.yaml:
-https://docs.trunk.io/check/reference/trunk-yaml
+@ https://docs.trunk.io/check/reference/trunk-yaml
 -  pre-commit (to be implemented):
-https://pre-commit.com/
+@ https://pre-commit.com/
