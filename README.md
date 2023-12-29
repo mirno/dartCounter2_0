@@ -41,9 +41,14 @@ Flexibility: The game logic is not tied to a specific scoring implementation. If
 
 > Testability: It's easier to test the Game logic by mocking different scoring systems.
 
+---
+
 - Trunk.yaml:
 
 https://docs.trunk.io/check/reference/trunk-yaml
+
+---
+
 -  pre-commit (to be implemented):
 
 https://pre-commit.com/
