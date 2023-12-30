@@ -1,6 +1,7 @@
 <!-- score-board.component.html -->
 <p>score board!</p>
 <div>
-    Current Score: {{ score }}
-</div>
-<button (click)="updateScore()">Update Score</button>
+    Current Score: {{ currentScore }}
+  </div>
+<input type="number" [(ngModel)]="inputScore">
+<button (click)="updateScore(inputScore)">Update Score</button>  

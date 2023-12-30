@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GameService } from '../game.service'; // Adjust the path as necessary
 
 @Component({
   selector: 'app-test',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './test.component.css'
 })
 export class TestComponent {
-
+  constructor(private gameService: GameService) { }
+  
 }

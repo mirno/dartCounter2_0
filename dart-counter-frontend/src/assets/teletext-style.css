@@ -1,0 +1,35 @@
+/* src/assets/teletext-style.css */
+.teletext {
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+  }
+  
+  .teletext-header {
+    background-color: red;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .teletext-content {
+    background-color: blue;
+    padding: 10px;
+  }
+  
+  .teletext-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  
+  .teletext-input {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 5px;
+  }
+  

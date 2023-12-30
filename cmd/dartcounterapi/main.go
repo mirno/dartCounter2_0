@@ -12,20 +12,11 @@ import (
 
 var currentGame *game.Game
 
-func enableCORS(next http.Handler) http.Handler {
-    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-        w.Header().Set("Access-Control-Allow-Origin", "*")
-        w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-        w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-        next.ServeHTTP(w, r)
-    })
-}
-
 func main() {
     router := mux.NewRouter()
     router.Use(enableCORS)
-    router.HandleFunc("/game/start", startGameHandler).Methods("POST")
-    router.HandleFunc("/game/score", updateScoreHandler).Methods("POST")
+    router.HandleFunc("/game/start", startGameHandler).Methods("POST", "OPTIONS")
+    router.HandleFunc("/game/score", updateScoreHandler).Methods("POST", "OPTIONS")
     // Define other routes
 
     http.ListenAndServe(":8080", router)
@@ -68,4 +59,17 @@ func updateScoreHandler(w http.ResponseWriter, r *http.Request) {
     json.NewEncoder(w).Encode(response)
 }
 
-// Define other handlers
+func enableCORS(next http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        w.Header().Set("Access-Control-Allow-Origin", "*")
+        w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+        w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
+        if r.Method == "OPTIONS" {
+            w.WriteHeader(http.StatusOK)
+            return
+        }
+
+        next.ServeHTTP(w, r)
+    })
+}

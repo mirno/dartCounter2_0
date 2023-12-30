@@ -1,3 +1,4 @@
 <!-- app.component.html -->
-<app-start-game></app-start-game>
-<app-score-board></app-score-board>
+<app-start-game (gameStarted)="scoreBoardComponent.resetScore($event)"></app-start-game>
+<app-score-board #scoreBoardComponent></app-score-board>
+<app-test #test></app-test>

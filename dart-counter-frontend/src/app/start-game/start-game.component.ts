@@ -1,5 +1,5 @@
 // score-board.component.ts
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { GameService } from '../game.service'; // Adjust the path as necessary
 
 @Component({
@@ -9,13 +9,14 @@ import { GameService } from '../game.service'; // Adjust the path as necessary
 })
 export class StartGameComponent {
   playerName: string = '';
+  @Output() gameStarted = new EventEmitter<number>(); // To notify when the game starts
 
   constructor(private gameService: GameService) { }
 
   startGame(): void {
     this.gameService.startGame(this.playerName).subscribe(response => {
-      console.log('Game started for:', this.playerName);
-      // Handle response, e.g., display player's initial score
+      console.log('Game started:', response);
+      this.gameStarted.emit(501); // Emit the initial score
     }, error => {
       console.error('Error starting game:', error);
     });

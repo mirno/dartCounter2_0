@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { GameService } from '../game.service'; // Adjust the path as necessary
 
 @Component({
@@ -7,17 +7,21 @@ import { GameService } from '../game.service'; // Adjust the path as necessary
   styleUrls: ['./score-board.component.css']
 })
 export class ScoreBoardComponent {
-  score: number = 501; // Initialize score
+  currentScore: number = 501;
+  inputScore: number = 0;
 
   constructor(private gameService: GameService) { }
 
-  updateScore(): void {
-    // Example: decrement score by 1 for demonstration
-    this.gameService.updateScore(this.score - 1).subscribe(response => {
+  updateScore(newScore: number): void {
+    this.gameService.updateScore(newScore).subscribe(response => {
       console.log('Score updated:', response);
-      this.score = response.updatedScore; // Update the score based on the response
+      this.currentScore = response.player1Score;
     }, error => {
       console.error('Error updating score:', error);
     });
+  }
+  resetScore(initialScore: number): void {
+    this.currentScore = initialScore;
+    this.inputScore = 0; // Reset the input field
   }
 }

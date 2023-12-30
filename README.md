@@ -129,3 +129,20 @@ Linting
 # Install ESLint extension
 ng lint
 ```
+
+# Issue's regarding CORS
+## Understanding CORS and Preflight Requests
+CORS (Cross-Origin Resource Sharing) is a security feature implemented in web browsers. It restricts web applications from making requests to a domain different from the one that served the web page, unless the server on the other end explicitly allows it. This is particularly important for applications like yours, where the Angular front-end (served from http://localhost:4200) makes requests to a Go API server (running on http://localhost:8080).
+
+## Preflight Requests
+When you make certain types of HTTP requests (like POST, PUT, DELETE, or any request that includes custom headers) from a web page to a different domain, the browser first sends an OPTIONS request before the actual request. This is known as a "preflight" request. The purpose is to check whether the actual request is safe to send, based on the CORS policy of the server.
+
+## The Role of OPTIONS Requests
+The OPTIONS request asks the server for the permissions (or "CORS policy") it has regarding requests from other origins. The server responds with headers that indicate whether the actual request is allowed. These headers include:
+
+>Access-Control-Allow-Origin: Specifies which origins are allowed. A value of * means any origin is allowed.
+Access-Control-Allow-Methods: Lists the HTTP methods that are allowed.
+Access-Control-Allow-Headers: Indicates which headers can be used in the actual request.
+
+## problem description
+The Angular application, when  tried to make a POST request to the Go API, the browser first sent an OPTIONS request as a preflight check. However, the Go server was not configured to handle OPTIONS requests correctly for the /game/start and /game/score endpoints. As a result, the server responded with a 405 Method Not Allowed status, causing the browser to block the subsequent POST request due to the CORS policy violation.
