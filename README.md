@@ -8,11 +8,33 @@ pkg/player/player.go: Defines the Player struct.
 pkg/score/score.go: Manages the Score struct.
 go.mod: Manages your project's dependencies.
 
+# GoLang Syntax information.
+- Receiver parameter. https://blog.devgenius.io/receiver-parameter-in-go-f0c3e25b7b10
+! type MyInt int
+```
+func (m MyInt) IsPositive() bool {
+    return m > 0
+}
+
+func main() {
+    var i MyInt = 5
+    fmt.Println(i.IsPositive()) // Output: true
+}
+```
+> The method takes a receiver parameter m of type MyInt, which is the instance of the type that the method is called on.
+
+- Pointers and the * Symbol
+> The * symbol is used to denote pointers in Go. A pointer holds the memory address of a value.
+When you see *Game, it means a pointer to a Game instance, allowing you to modify the original Game instance passed around.
+- The this Keyword and Interfaces
+> Go does not use the this keyword like TypeScript or JavaScript. Instead, Go methods are defined with a receiver argument, which serves a similar purpose.
+Interfaces in Go are a way to specify a set of method signatures. Any type that implements those methods satisfies the interface. This is different from languages with class-based inheritance.
+
 # Execution and Testing
 After creating these files, you can build and run your application using the Go command line:
 
 Navigate to the dartCounter directory.
-Run go build ./cmd/dartcounter to build your application.
+Run 'go build ./cmd/dartcounter' to build your application.
 Execute ./dartcounter to run the application.
 
 # General Information
@@ -21,7 +43,7 @@ Package Management: Use go mod init <module-name> to initialize a new module. Th
 # Design
 PlantUml makes the design of classes & interfaces visible. 
 
-![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/mirno/dartCounter2_0/f_interfaces/diagram.puml)
+![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/mirno/dartCounter2_0/main/diagram.puml)
 
 
 # Documentation for information
