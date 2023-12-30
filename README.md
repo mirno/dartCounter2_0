@@ -44,7 +44,6 @@ PlantUml makes the design of classes & interfaces visible.
 
 ![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/mirno/dartCounter2_0/main/diagram.puml)
 
-
 # Documentation for information
 ##  Interfacing:
  https://www.baeldung.com/cs/program-to-interface
