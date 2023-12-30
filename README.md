@@ -19,7 +19,11 @@ Execute ./dartcounter to run the application.
 Package Management: Use go mod init <module-name> to initialize a new module. This will create a go.mod file which will manage your dependencies.
 
 # Design
-PlantUml is used for making the classes visible. 
+PlantUml makes the design of classes & interfaces visible. 
+===
+![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://github.com/mirno/dartCounter2_0/blob/main/diagram.puml)
+===
+
 
 # Documentation for information
 ##  Interfacing:
