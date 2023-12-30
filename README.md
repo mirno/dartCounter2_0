@@ -21,7 +21,7 @@ Package Management: Use go mod init <module-name> to initialize a new module. Th
 # Design
 PlantUml makes the design of classes & interfaces visible. 
 ===
-![Class Diagram](diagram.puml)
+![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Zingam/Markdown-Document-UML-Use-Test/master/UML/Instance.puml)
 ===
 
 
