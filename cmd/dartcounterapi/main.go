@@ -10,10 +10,20 @@ import (
     // Import other necessary packages
 )
 
-var currentGame *game.game
+var currentGame *game.Game
+
+func enableCORS(next http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        w.Header().Set("Access-Control-Allow-Origin", "*")
+        w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+        w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+        next.ServeHTTP(w, r)
+    })
+}
+
 func main() {
     router := mux.NewRouter()
-
+    router.Use(enableCORS)
     router.HandleFunc("/game/start", startGameHandler).Methods("POST")
     router.HandleFunc("/game/score", updateScoreHandler).Methods("POST")
     // Define other routes
@@ -23,6 +33,14 @@ func main() {
 
 func startGameHandler(w http.ResponseWriter, r *http.Request) {
     // Start game logic
+    p1 := player.NewPlayer("Player 1", 501) // := declares ;)
+    p2 := player.NewPlayer("Player 2", 501)
+    scoringSystem := &scoring.StandardScoring{}
+
+    // Initialize and store the game
+    currentGame = game.NewGame(p1, p2, scoringSystem)
+
+    // Respond with confirmation
     response := map[string]string{"message": "Game started"}
     json.NewEncoder(w).Encode(response)
 
@@ -34,13 +52,20 @@ func startGameHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateScoreHandler(w http.ResponseWriter, r *http.Request) {
-    // Update score logic
-    response := map[string]string{"message": "Score updated"}
-    json.NewEncoder(w).Encode(response)
+    // Parse request data to get the score
+    // For example, let's assume the request contains a JSON with the score
+    var data struct {
+        Score int `json:"score"`
+    }
+    json.NewDecoder(r.Body).Decode(&data)
 
-    // Parse request data
-    // Update the game state using the game logic
-    // Respond with the updated game state or confirmation
+    // Update the game state (you'll need logic to determine the current player)
+    // For simplicity, let's assume player 1 is always playing
+    currentGame.UpdateScore(currentGame.Player1, data.Score)
+
+    // Respond with the updated score
+    response := map[string]int{"player1Score": currentGame.Player1.Score}
+    json.NewEncoder(w).Encode(response)
 }
 
 // Define other handlers

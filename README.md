@@ -8,6 +8,11 @@ DartCounter2.0 back-end with GoLang front-end with Angular
 - air | 
 'go get -u github.com/cosmtrek/air' 
 
+- CORS (Cross-Origin Resource Sharing)
+> is a mechanism that allows or restricts requested resources on a web server depending on where the HTTP request was initiated. This is used for security reasons and is particularly important when your front-end and back-end are served from different origins (e.g., different ports during development).
+---
+> By enabling CORS in your Go server, you're allowing your Angular app (running on a different port) to make requests to your Go API.
+
 # Folder structure
 cmd/dartcounter/main.go: The entry point of your application.
 pkg/game/game.go: Contains the Game struct and related methods.
@@ -86,6 +91,41 @@ https://docs.trunk.io/check/reference/trunk-yaml
 
 https://pre-commit.com/
 
-# Extentions used:
+# Extensions used:
 - Go https://marketplace.visualstudio.com/items?itemName=golang.Go
 - REST Client https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+- ESLint https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+
+===
+# Angular Front-End documentation
+Install angular and create project
+```
+npm install -g @angular/cli
+ng new dart-counter-frontend  --no-standalone --routing --ssr=false # 
+cd dart-counter-frontend
+```
+Some issue's regarding app.module.ts and routing, please read:
+https://github.com/angular/angular/pull/52761
+https://github.com/angular/angular/issues/52751
+
+Testing:
+```
+ng server
+```
+
+## app routing
+```
+ng generate module app-routing --flat --module=app
+```
+
+Generate components and service
+```
+ng generate component <component>
+ng generate service game
+```
+
+Linting
+```
+# Install ESLint extension
+ng lint
+```
