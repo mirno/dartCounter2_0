@@ -1,7 +1,14 @@
 <!-- score-board.component.html -->
-<p>score board!</p>
-<div>
-    Current Score: {{ currentScore }}
+<div class="teletext">
+    <div class="teletext-header">Game Score (Page 820)</div>
+    <div class="teletext-content">
+      <div>Current Score: {{ score }}</div>
+      <input class="teletext-input" type="number" [(ngModel)]="inputScore">
+      <button class="teletext-button" (click)="updateScore(inputScore)">Update Score</button>
+    </div>
+    <div class="teletext-nav">
+      <button (click)="navigateToPage(818)">818</button>
+      <button (click)="navigateToPage(819)">819</button>
+    </div>
   </div>
-<input type="number" [(ngModel)]="inputScore">
-<button (click)="updateScore(inputScore)">Update Score</button>  
+  

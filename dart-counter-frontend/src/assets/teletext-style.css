@@ -3,33 +3,53 @@
     background-color: black;
     color: white;
     font-family: 'Courier New', Courier, monospace;
+    display: grid;
+    grid-template-columns: repeat(40, 1fr); /* 40 columns grid */
+    grid-gap: 2px;
     padding: 10px;
   }
   
-  .teletext-header {
-    background-color: red;
+  .teletext-cell {
+    background-color: #080808; /* Dark background for cells */
+    color: #00ff00; /* Bright green text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 5px;
-    text-align: center;
+    height: 30px; /* Fixed height for each cell */
+  }
+  
+  /* Specific styles for header, content, and navigation */
+  .teletext-header {
+    grid-column: span 40;
+    background-color: #0000ff; /* Blue background for header */
   }
   
   .teletext-content {
-    background-color: blue;
-    padding: 10px;
+    grid-column: span 40;
+    background-color: #202020; /* Slightly lighter background for content */
   }
   
-  .teletext-button {
-    background-color: green;
+  .teletext-nav {
+    grid-column: span 40;
+    background-color: #ff0000; /* Red background for navigation */
+    display: flex;
+  }
+  
+  .teletext-nav button {
+    background-color: #ff0000;
     color: white;
     border: none;
     padding: 5px 10px;
-    margin: 5px;
     cursor: pointer;
   }
   
-  .teletext-input {
-    background-color: white;
-    color: black;
+  /* Input and button styles */
+  .teletext-input, .teletext-button {
+    background-color: #0000ff;
+    color: white;
     border: none;
     padding: 5px;
+    margin: 2px;
   }
   
