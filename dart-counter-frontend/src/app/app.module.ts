@@ -7,6 +7,7 @@ import { StartGameComponent } from './start-game/start-game.component';
 import { ScoreBoardComponent } from './score-board/score-board.component';
 import { TestComponent } from './test/test.component';
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { FormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http'; // Import HttpClientMod
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule 
   ],

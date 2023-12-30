@@ -9,8 +9,8 @@ export class GameService {
 
   constructor(private http: HttpClient) { }
 
-  startGame() {
-    return this.http.post<any>(`${this.apiUrl}/game/start`, {});
+  startGame(playerName: string) {
+    return this.http.post<any>(`${this.apiUrl}/game/start`, { playerName });
   }
 
   updateScore(score: number) {

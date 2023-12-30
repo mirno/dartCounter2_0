@@ -7,13 +7,13 @@ import { GameService } from '../game.service'; // Adjust the path as necessary
   styleUrls: ['./score-board.component.css']
 })
 export class ScoreBoardComponent {
-  score: number = 0; // Initialize score
+  score: number = 501; // Initialize score
 
   constructor(private gameService: GameService) { }
 
   updateScore(): void {
-    // Example: increment score by 1 for demonstration
-    this.gameService.updateScore(this.score + 1).subscribe(response => {
+    // Example: decrement score by 1 for demonstration
+    this.gameService.updateScore(this.score - 1).subscribe(response => {
       console.log('Score updated:', response);
       this.score = response.updatedScore; // Update the score based on the response
     }, error => {

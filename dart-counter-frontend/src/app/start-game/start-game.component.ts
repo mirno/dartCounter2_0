@@ -8,13 +8,14 @@ import { GameService } from '../game.service'; // Adjust the path as necessary
   styleUrls: ['./start-game.component.css']
 })
 export class StartGameComponent {
+  playerName: string = '';
 
   constructor(private gameService: GameService) { }
 
   startGame(): void {
-    this.gameService.startGame().subscribe(response => {
-      console.log('Game started:', response);
-      // Handle response
+    this.gameService.startGame(this.playerName).subscribe(response => {
+      console.log('Game started for:', this.playerName);
+      // Handle response, e.g., display player's initial score
     }, error => {
       console.error('Error starting game:', error);
     });
