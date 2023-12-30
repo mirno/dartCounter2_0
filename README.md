@@ -1,6 +1,18 @@
 # dartCounter2_0
 DartCounter2.0 back-end with GoLang front-end with Angular
 
+# Installation
+- Gorilla Mux | 
+'go get -u github.com/gorilla/mux.' 
+
+- air | 
+'go get -u github.com/cosmtrek/air' 
+
+- CORS (Cross-Origin Resource Sharing)
+> is a mechanism that allows or restricts requested resources on a web server depending on where the HTTP request was initiated. This is used for security reasons and is particularly important when your front-end and back-end are served from different origins (e.g., different ports during development).
+---
+> By enabling CORS in your Go server, you're allowing your Angular app (running on a different port) to make requests to your Go API.
+
 # Folder structure
 cmd/dartcounter/main.go: The entry point of your application.
 pkg/game/game.go: Contains the Game struct and related methods.
@@ -21,6 +33,9 @@ func main() {
 }
 ```
 > The method takes a receiver parameter m of type MyInt, which is the instance of the type that the method is called on.
+
+> In Go, := is for declaration + assignment, whereas = is for assignment only.
+For example, var foo int = 10 is the same as foo := 10.
 
 - Pointers and the * Symbol
 ## The * symbol is used to denote pointers in Go. A pointer holds the memory address of a value.
@@ -66,7 +81,7 @@ Flexibility: The game logic is not tied to a specific scoring implementation. If
 
 ---
 
-- Trunk.yaml:
+- Trunk.yaml (To Investigate):
 
 https://docs.trunk.io/check/reference/trunk-yaml
 
@@ -75,3 +90,59 @@ https://docs.trunk.io/check/reference/trunk-yaml
 -  pre-commit (to be implemented):
 
 https://pre-commit.com/
+
+# Extensions used:
+- Go https://marketplace.visualstudio.com/items?itemName=golang.Go
+- REST Client https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+- ESLint https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+
+===
+# Angular Front-End documentation
+Install angular and create project
+```
+npm install -g @angular/cli
+ng new dart-counter-frontend  --no-standalone --routing --ssr=false # 
+cd dart-counter-frontend
+```
+Some issue's regarding app.module.ts and routing, please read:
+https://github.com/angular/angular/pull/52761
+https://github.com/angular/angular/issues/52751
+
+Testing:
+```
+ng server
+```
+
+## app routing
+```
+ng generate module app-routing --flat --module=app
+```
+
+Generate components and service
+```
+ng generate component <component>
+ng generate service game
+```
+
+Linting
+```
+# Install ESLint extension
+ng lint
+```
+
+# Issue's regarding CORS
+## Understanding CORS and Preflight Requests
+CORS (Cross-Origin Resource Sharing) is a security feature implemented in web browsers. It restricts web applications from making requests to a domain different from the one that served the web page, unless the server on the other end explicitly allows it. This is particularly important for applications like yours, where the Angular front-end (served from http://localhost:4200) makes requests to a Go API server (running on http://localhost:8080).
+
+## Preflight Requests
+When you make certain types of HTTP requests (like POST, PUT, DELETE, or any request that includes custom headers) from a web page to a different domain, the browser first sends an OPTIONS request before the actual request. This is known as a "preflight" request. The purpose is to check whether the actual request is safe to send, based on the CORS policy of the server.
+
+## The Role of OPTIONS Requests
+The OPTIONS request asks the server for the permissions (or "CORS policy") it has regarding requests from other origins. The server responds with headers that indicate whether the actual request is allowed. These headers include:
+
+>Access-Control-Allow-Origin: Specifies which origins are allowed. A value of * means any origin is allowed.
+Access-Control-Allow-Methods: Lists the HTTP methods that are allowed.
+Access-Control-Allow-Headers: Indicates which headers can be used in the actual request.
+
+## problem description
+The Angular application, when  tried to make a POST request to the Go API, the browser first sent an OPTIONS request as a preflight check. However, the Go server was not configured to handle OPTIONS requests correctly for the /game/start and /game/score endpoints. As a result, the server responded with a 405 Method Not Allowed status, causing the browser to block the subsequent POST request due to the CORS policy violation.
