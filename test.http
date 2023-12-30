@@ -1,0 +1,7 @@
+POST http://localhost:8080/game/start
+Content-Type: application/json
+
+{
+    "player1": "Alice",
+    "player2": "Bob"
+}

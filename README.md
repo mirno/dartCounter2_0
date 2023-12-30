@@ -1,6 +1,13 @@
 # dartCounter2_0
 DartCounter2.0 back-end with GoLang front-end with Angular
 
+# Installation
+- Gorilla Mux | 
+'go get -u github.com/gorilla/mux.' 
+
+- air | 
+'go get -u github.com/cosmtrek/air' 
+
 # Folder structure
 cmd/dartcounter/main.go: The entry point of your application.
 pkg/game/game.go: Contains the Game struct and related methods.
@@ -21,6 +28,9 @@ func main() {
 }
 ```
 > The method takes a receiver parameter m of type MyInt, which is the instance of the type that the method is called on.
+
+> In Go, := is for declaration + assignment, whereas = is for assignment only.
+For example, var foo int = 10 is the same as foo := 10.
 
 - Pointers and the * Symbol
 ## The * symbol is used to denote pointers in Go. A pointer holds the memory address of a value.
@@ -66,7 +76,7 @@ Flexibility: The game logic is not tied to a specific scoring implementation. If
 
 ---
 
-- Trunk.yaml:
+- Trunk.yaml (To Investigate):
 
 https://docs.trunk.io/check/reference/trunk-yaml
 
@@ -75,3 +85,7 @@ https://docs.trunk.io/check/reference/trunk-yaml
 -  pre-commit (to be implemented):
 
 https://pre-commit.com/
+
+# Extentions used:
+- Go https://marketplace.visualstudio.com/items?itemName=golang.Go
+- REST Client https://marketplace.visualstudio.com/items?itemName=humao.rest-client
