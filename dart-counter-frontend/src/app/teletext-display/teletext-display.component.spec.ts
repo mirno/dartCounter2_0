@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TestComponent } from './test.component';
+import { TeletextDisplayComponent } from './teletext-display.component';
 
-describe('TestComponent', () => {
-  let component: TestComponent;
-  let fixture: ComponentFixture<TestComponent>;
+describe('TeletextDisplayComponent', () => {
+  let component: TeletextDisplayComponent;
+  let fixture: ComponentFixture<TeletextDisplayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TestComponent]
+      declarations: [TeletextDisplayComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(TestComponent);
+    fixture = TestBed.createComponent(TeletextDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

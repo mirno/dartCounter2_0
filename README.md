@@ -21,7 +21,7 @@ pkg/score/score.go: Manages the Score struct.
 go.mod: Manages your project's dependencies.
 
 # GoLang Syntax information.
-## Receiver parameter. https://blog.devgenius.io/receiver-parameter-in-go-f0c3e25b7b10
+## [Receiver parameter](https://blog.devgenius.io/receiver-parameter-in-go-f0c3e25b7b10)
 ```
 func (m MyInt) IsPositive() bool {
     return m > 0

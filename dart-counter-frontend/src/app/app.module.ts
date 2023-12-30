@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartGameComponent } from './start-game/start-game.component';
 import { ScoreBoardComponent } from './score-board/score-board.component';
-import { TestComponent } from './test/test.component';
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 import { FormsModule } from '@angular/forms';
+import { TeletextDisplayComponent } from './teletext-display/teletext-display.component';
 
 
 @NgModule({
@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     StartGameComponent,
     ScoreBoardComponent,
-    TestComponent
+    TeletextDisplayComponent,
   ],
   imports: [
     BrowserModule,
