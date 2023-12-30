@@ -20,15 +20,8 @@ Package Management: Use go mod init <module-name> to initialize a new module. Th
 
 # Design
 PlantUml makes the design of classes & interfaces visible. 
-Text? - Is the Head behind?
-
-![Class Diagram]('https://www.plantuml.com/plantuml/png/nL8zJyCm4DtzAsvCHLC9HgkAYZgmC205n6pYex58pf7lAbGL_Zjnug8aC28n9Nu-lu-dsx6O8CUsKLLZcE7Ej0Xd1G2GGzUO4uPh3G_3pmozMQ1S-U3eK9vOiDLGJe_3o1MKKIeAPAk4F7NM2CPPp4RQ2-jw84GDZkGolQ-nUdjsjFTadJXFsKh3Y_SD6bAVAYKOttzde5vFzzBHpGXDc1CWTV3lhE7UiMnxk4Y2jzO-ngjiuYKAzLyChwR2UKmu_r6iHU_hPUM_n8xbaZN19aV_v6LOdpouGorviMX7mv6HeL1pUFknsVnmhy6rNOCjah3Q8TcueLy0')
-
-![Class Diagram](https://www.plantuml.com/plantuml/png/nL8zJyCm4DtzAsvCHLC9HgkAYZgmC205n6pYex58pf7lAbGL_ZjEug8aC2AH9Sdp-NqytOx513csZQeQmmntfaKuAuXF3brZJXYkDJmC7pFqPe5ovOEZGtbYmLP3EVqTHgwWxALwWMoLaAVE6i5-5hEHziAw7WXHWoEvJEzhhDwU7UqzMIVEKxRIyE9zWuRKfneJfFlV6IZgwIZTkncX2NC2f0x-dJNSEvPjX8iaU6ljOt-KJRr4eVZ6y6egdCU4yn_5MlI-NbR-M-nOBbaJR7BqJrw6zSc3EzII5ujsD1mP6GerXxSVcyqFzz5KspNO8Wch7PAD6_e5)
 
 ![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/mirno/dartCounter2_0/f_interfaces/diagram.puml)
-
-![Class Diagram](https://www.plantuml.com/plantuml/png/nL8zJyCm4DtzAsvCHLC9HgkAYZgmC205n6pYex58pf7lAbGL_Zjnug8aC28n9Nu-lu-dsx6O8CUsKLLZcE7Ej0Xd1G2GGzUO4uPh3G_3pmozMQ1S-U3eK9vOiDLGJe_3o1MKKIeAPAk4F7NM2CPPp4RQ2-jw84GDZkGolQ-nUdjsjFTadJXFsKh3Y_SD6bAVAYKOttzde5vFzzBHpGXDc1CWTV3lhE7UiMnxk4Y2jzO-ngjiuYKAzLyChwR2UKmu_r6iHU_hPUM_n8xbaZN19aV_v6LOdpouGorviMX7mv6HeL1pUFknsVnmhy6rNOCjah3Q8TcueLy0)
 
 
 # Documentation for information
