@@ -106,7 +106,7 @@ https://pre-commit.com/
 - [pocketBase](https://pocketbase.io/)
 - [Gin webframework](https://pkg.go.dev/github.com/gin-gonic/gin) [2](https://gin-gonic.com/) [git](https://github.com/gin-gonic/gin)
 - [Compare Gin, Gorilla, mux and net/http](https://www.golang.company/blog/comparison-between-gin-gorilla-mux-and-net-http)
-
+- [Selecting GO router](https://www.alexedwards.net/blog/which-go-router-should-i-use)
 
 # Extensions used:
 - Go https://marketplace.visualstudio.com/items?itemName=golang.Go
