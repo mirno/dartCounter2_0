@@ -1,11 +1,20 @@
 # dartCounter2_0
 DartCounter2.0 back-end with GoLang front-end with Angular
+Project contains of two parts:
+- Go (API) back-end
+- Angular front-end
+
+===
+# Flow chart design for both front & back-end 
+( Placeholder since we need to show the flowcharts after v1.0.0 is released )
+
+=== GO ===
 
 # Installation
 - Gorilla Mux | 
 'go get -u github.com/gorilla/mux.' 
 
-- air | 
+- air | *Having some trouble getting air to work... (WIP)
 'go get -u github.com/cosmtrek/air' 
 
 - CORS (Cross-Origin Resource Sharing)
@@ -57,6 +66,7 @@ Package Management: Use go mod init <module-name> to initialize a new module. Th
 # Design
 PlantUml makes the design of classes & interfaces visible. 
 
+(Note, this was working, need to troubleshoot to make this thing work again dynamically)
 ![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/mirno/dartCounter2_0/main/diagram.puml)
 
 # Documentation for information
@@ -91,12 +101,19 @@ https://docs.trunk.io/check/reference/trunk-yaml
 
 https://pre-commit.com/
 
+## Topic to investigate
+### Go back-end & API
+- [pocketBase](https://pocketbase.io/)
+- [Gin webframework](https://pkg.go.dev/github.com/gin-gonic/gin) [2](https://gin-gonic.com/) [git](https://github.com/gin-gonic/gin)
+- [Compare Gin, Gorilla, mux and net/http](https://www.golang.company/blog/comparison-between-gin-gorilla-mux-and-net-http)
+
+
 # Extensions used:
 - Go https://marketplace.visualstudio.com/items?itemName=golang.Go
 - REST Client https://marketplace.visualstudio.com/items?itemName=humao.rest-client
 - ESLint https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 
-===
+=== Angular ===
 # Angular Front-End documentation
 Install angular and create project
 ```
