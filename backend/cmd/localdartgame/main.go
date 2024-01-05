@@ -17,7 +17,7 @@ func isValidTurnScore(score int) bool {
 	impossibleScores := map[int]bool{
 		159: true, 162: true, 163: true, 166: true, 169: true,
 		172: true, 173: true, 175: true, 176: true, 178: true, 179: true,
-	}
+	}  
 
 	// Check if the score is in the range and not in the list of impossible scores
 	return score >= 0 && score <= 180 && !impossibleScores[score]

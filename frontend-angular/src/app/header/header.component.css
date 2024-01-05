@@ -1,0 +1,9 @@
+/* header.component.css */
+.header {
+    background-color: #1a1a1a; /* Dark background */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 24px;
+  }
+  

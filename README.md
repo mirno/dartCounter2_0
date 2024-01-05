@@ -163,3 +163,20 @@ Access-Control-Allow-Headers: Indicates which headers can be used in the actual 
 
 ## problem description
 The Angular application, when  tried to make a POST request to the Go API, the browser first sent an OPTIONS request as a preflight check. However, the Go server was not configured to handle OPTIONS requests correctly for the /game/start and /game/score endpoints. As a result, the server responded with a 405 Method Not Allowed status, causing the browser to block the subsequent POST request due to the CORS policy violation.
+
+---
+
+# Frontend development REACT
+
+> npx create-react-app frontend-react --template typescript
+
+## Using TypeScript with React
+1. Using TypeScript in your React project offers several benefits, such as improved code quality and developer experience due to static typing. Here are some key points about using TypeScript with React:
+
+2. TypeScript Interfaces: TypeScript interfaces are a powerful way to define the shape of objects or props in React. They help ensure that components receive and use props correctly.
+
+3. Component Props and State: Define interfaces for your component props and state for better type checking.
+
+4. Event Handling: TypeScript can help define the types for event objects in your event handlers, making it easier to access event properties safely.
+
+5. Integration with Third-Party Libraries: Many popular libraries have TypeScript type definitions available, either bundled with the library or as separate @types/ packages.
