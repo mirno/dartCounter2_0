@@ -1,14 +1,14 @@
-// StartGame.tsx
+// src/components/StartGame.tsx
 import React, { useState } from 'react';
+import { startGame } from '../api';
 
 const StartGame = () => {
   const [playerName, setPlayerName] = useState('');
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    // API call to start the game
-    console.log(`Starting game for ${playerName}`);
-    // Implement the API call here
+    const response = await startGame(playerName);
+    console.log(response.message); // Or handle this message in the UI
   };
 
   return (
