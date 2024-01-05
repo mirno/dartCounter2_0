@@ -180,3 +180,34 @@ The Angular application, when  tried to make a POST request to the Go API, the b
 4. Event Handling: TypeScript can help define the types for event objects in your event handlers, making it easier to access event properties safely.
 
 5. Integration with Third-Party Libraries: Many popular libraries have TypeScript type definitions available, either bundled with the library or as separate @types/ packages.
+
+# Containerization
+
+We need to prepare Dockerfiles for each project, GO as backend and React as frontend:
+
+--- backend go ---
+
+> touch backend-go/Dockerfile
+
+This Dockerfile uses the official Go image, sets up the working directory, copies your Go files, installs dependencies, builds your application, and sets the default command to run your app.
+
+> cd backend-go 
+
+> docker build -t dartcounter api .
+
+
+--- frontend react ---
+
+This Dockerfile first builds your React application using Node.js and then sets up an Nginx server to serve the built files.
+
+> cd frontend-react
+
+> docker build -t frontend-react .
+
+---
+```
+$ docker ps
+CONTAINER ID   IMAGE            COMMAND                  CREATED              STATUS              PORTS                    NAMES
+d65c8fc3f6ec   frontend-react   "/docker-entrypoint.…"   8 seconds ago        Up 7 seconds        0.0.0.0:80->80/tcp       wonderful_haslett
+6019fde346ea   dartcounterapi   "./main"                 About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp   boring_jang
+```
