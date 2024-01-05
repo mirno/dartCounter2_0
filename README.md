@@ -1,11 +1,20 @@
 # dartCounter2_0
 DartCounter2.0 back-end with GoLang front-end with Angular
+Project contains of two parts:
+- Go (API) back-end
+- Angular front-end
+
+===
+# Flow chart design for both front & back-end 
+( Placeholder since we need to show the flowcharts after v1.0.0 is released )
+
+=== GO ===
 
 # Installation
 - Gorilla Mux | 
 'go get -u github.com/gorilla/mux.' 
 
-- air | 
+- air | *Having some trouble getting air to work... (WIP)
 'go get -u github.com/cosmtrek/air' 
 
 - CORS (Cross-Origin Resource Sharing)
@@ -21,7 +30,7 @@ pkg/score/score.go: Manages the Score struct.
 go.mod: Manages your project's dependencies.
 
 # GoLang Syntax information.
-## Receiver parameter. https://blog.devgenius.io/receiver-parameter-in-go-f0c3e25b7b10
+## [Receiver parameter](https://blog.devgenius.io/receiver-parameter-in-go-f0c3e25b7b10)
 ```
 func (m MyInt) IsPositive() bool {
     return m > 0
@@ -57,6 +66,7 @@ Package Management: Use go mod init <module-name> to initialize a new module. Th
 # Design
 PlantUml makes the design of classes & interfaces visible. 
 
+(Note, this was working, need to troubleshoot to make this thing work again dynamically)
 ![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/mirno/dartCounter2_0/main/diagram.puml)
 
 # Documentation for information
@@ -91,12 +101,19 @@ https://docs.trunk.io/check/reference/trunk-yaml
 
 https://pre-commit.com/
 
+## Topic to investigate
+### Go back-end & API
+- [pocketBase](https://pocketbase.io/)
+- [Gin webframework](https://pkg.go.dev/github.com/gin-gonic/gin) [2](https://gin-gonic.com/) [git](https://github.com/gin-gonic/gin)
+- [Compare Gin, Gorilla, mux and net/http](https://www.golang.company/blog/comparison-between-gin-gorilla-mux-and-net-http)
+- [Selecting GO router](https://www.alexedwards.net/blog/which-go-router-should-i-use)
+
 # Extensions used:
 - Go https://marketplace.visualstudio.com/items?itemName=golang.Go
 - REST Client https://marketplace.visualstudio.com/items?itemName=humao.rest-client
 - ESLint https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 
-===
+=== Angular ===
 # Angular Front-End documentation
 Install angular and create project
 ```
@@ -146,3 +163,20 @@ Access-Control-Allow-Headers: Indicates which headers can be used in the actual 
 
 ## problem description
 The Angular application, when  tried to make a POST request to the Go API, the browser first sent an OPTIONS request as a preflight check. However, the Go server was not configured to handle OPTIONS requests correctly for the /game/start and /game/score endpoints. As a result, the server responded with a 405 Method Not Allowed status, causing the browser to block the subsequent POST request due to the CORS policy violation.
+
+---
+
+# Frontend development REACT
+
+> npx create-react-app frontend-react --template typescript
+
+## Using TypeScript with React
+1. Using TypeScript in your React project offers several benefits, such as improved code quality and developer experience due to static typing. Here are some key points about using TypeScript with React:
+
+2. TypeScript Interfaces: TypeScript interfaces are a powerful way to define the shape of objects or props in React. They help ensure that components receive and use props correctly.
+
+3. Component Props and State: Define interfaces for your component props and state for better type checking.
+
+4. Event Handling: TypeScript can help define the types for event objects in your event handlers, making it easier to access event properties safely.
+
+5. Integration with Third-Party Libraries: Many popular libraries have TypeScript type definitions available, either bundled with the library or as separate @types/ packages.
