@@ -67,7 +67,7 @@ Package Management: Use go mod init <module-name> to initialize a new module. Th
 PlantUml makes the design of classes & interfaces visible. 
 
 (Note, this was working, need to troubleshoot to make this thing work again dynamically)
-![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/mirno/dartCounter2_0/main/backend/diagram.puml)
+![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/mirno/dartCounter2_0/main/backend-go/diagram.puml)
 
 # Documentation for information
 ##  Interfacing:
@@ -215,6 +215,12 @@ d65c8fc3f6ec   frontend-react   "/docker-entrypoint.…"   8 seconds ago        
 # Container platform - Heroku
 - Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
+## Idea's
+- Currently two application are in Heroku:
+    - backend-dartapp
+    - frontend-dartapp
+> This will double the cost.
+- Ideally we can implement nginx for routes and make the back-end available in the same app to save dyno's
 
 Building and pushing to Heroku Container Registry 
 ```
