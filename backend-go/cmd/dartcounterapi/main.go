@@ -1,13 +1,15 @@
 package main
 
 import (
-    "dartCounter/pkg/game"
-    "dartCounter/pkg/player"
-    "dartCounter/pkg/scoring"
-    "encoding/json"
-    "net/http"
-    "github.com/gorilla/mux"
-    // Import other necessary packages
+	"dartCounter/pkg/game"
+	"dartCounter/pkg/player"
+	"dartCounter/pkg/scoring"
+	"encoding/json"
+	"net/http"
+	"os"
+
+	"github.com/gorilla/mux"
+	// Import other necessary packages
 )
 
 var currentGame *game.Game
@@ -19,7 +21,11 @@ func main() {
     router.HandleFunc("/game/score", updateScoreHandler).Methods("POST", "OPTIONS")
     // Define other routes
 
-    http.ListenAndServe(":8080", router)
+    port := os.Getenv("PORT")
+    if port == "" {
+        port = "8080" // Default port if not specified
+    }
+    http.ListenAndServe(":"+port, router)
 }
 
 func startGameHandler(w http.ResponseWriter, r *http.Request) {

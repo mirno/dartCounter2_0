@@ -211,3 +211,73 @@ CONTAINER ID   IMAGE            COMMAND                  CREATED              ST
 d65c8fc3f6ec   frontend-react   "/docker-entrypoint.…"   8 seconds ago        Up 7 seconds        0.0.0.0:80->80/tcp       wonderful_haslett
 6019fde346ea   dartcounterapi   "./main"                 About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp   boring_jang
 ```
+
+# Container platform - Heroku
+- Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+
+
+Building and pushing to Heroku Container Registry 
+```
+heroku login
+heroku create dartcounter
+heroku container:login # Logs in at the Heroku  Container Registry
+heroku apps # shows apps
+# go backend
+cd path/to/your/go/project
+docker build -t registry.heroku.com/dartcounterapi/api .
+docker push registry.heroku.com/dartcounterapi/api
+heroku container:release api -a dartcounterapi
+
+===
+cd path/to/your/react/project
+docker build -t registry.heroku.com/dartcounterapi/web .
+docker push registry.heroku.com/dartcounterapi/web
+heroku container:release web -a dartcounterapi
+
+---
+heroku open -a dartcounterapi
+# stop
+heroku ps:scale web=0 -a dartcounterapi
+heroku ps:scale api=0 -a dartcounterapi
+
+
+# Open application
+heroku open -a dartcounterapi
+
+```
+
+---
+(NOTE: Tradional deployment are possible using GIT)
+If you're deploying a traditional Heroku app (not using containers), you can deploy your app directly from your Git repository:
+
+
+## Optional: Deploy Using Git
+
+> git push heroku master
+
+This command pushes your code to the Heroku remote, triggering a build and deployment.
+
+
+## Troubleshooting
+
+```
+heroku ps -a dartcounterapi # Verify dynos
+scaling
+heroku ps:scale web=1 -a dartcounterapi
+heroku ps:scale api=1 -a dartcounterapi
+
+```
+
+## Permission Denied on Port 80:
+The error bind() to 0.0.0.0:80 failed (13: Permission denied) suggests that the Nginx server inside your Docker container is trying to bind to port 80, which is not allowed on Heroku. Heroku dynamically assigns a port and exposes it through the $PORT environment variable. Your application must listen on this port.
+
+# Docker compose
+For local testing we need docker compose. It contains following container applications:
+- backend
+- frontend
+- nginx
+
+```
+docker-compose up --build # will start the containers (and dependencies)
+docker-compose down # will close all containers.
+```
