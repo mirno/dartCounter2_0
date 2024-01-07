@@ -1,28 +1,43 @@
 package game
 
 import (
-	"dartCounter/pkg/player"
-	"dartCounter/pkg/scoring"
+	"dartCounter/pkg/match"
+	"dartCounter/pkg/participant"
 )
 
 type Game struct {
-	Player1       *player.Player
-	Player2       *player.Player
-	ScoringSystem scoring.ScoringSystem
+    match interface{} // Can be match.SinglePlayerMatch or match.TeamMatch
 }
 
-func NewGame(p1, p2 *player.Player, scoringSystem scoring.ScoringSystem) *Game {
-	return &Game{
-		Player1:       p1,
-		Player2:       p2,
-		ScoringSystem: scoringSystem,
-	}
+func NewGame(participants []participant.Participant, startingScore int) *Game {
+    game := &Game{}
+    game.StartMatch(participants, startingScore)
+    return game
 }
 
-func (g *Game) UpdateScore(p *player.Player, score int) {
-	g.ScoringSystem.UpdateScore(p, score)
+func (g *Game) StartMatch(participants []participant.Participant, startingScore int) {
+    if len(participants) == 1 {
+        g.match = match.NewSinglePlayerMatch(participants[0], startingScore)
+    } else {
+        g.match = match.NewTeamMatch(participants, startingScore)
+    }
+}
+
+func (g *Game) UpdateScore(playerID int, score int) {
+    switch m := g.match.(type) {
+    case match.SinglePlayerMatch:
+        m.UpdateScore(score)
+    case match.TeamMatch:
+        m.UpdateScore(playerID, score)
+    }
 }
 
 func (g *Game) CheckWinCondition() bool {
-	return g.ScoringSystem.CheckWinCondition(g.Player1, g.Player2)
+    switch m := g.match.(type) {
+    case match.SinglePlayerMatch:
+        return m.CheckWinCondition()
+    case match.TeamMatch:
+        return m.CheckWinCondition()
+    }
+    return false
 }

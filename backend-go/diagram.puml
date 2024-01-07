@@ -1,30 +1,76 @@
 @startuml
-class Game {
-    - player1: Player
-    - player2: Player
-    - scoringSystem: ScoringSystem
-    + StartGame()
-    + UpdateScore(player: Player, score: int)
-    + CheckWinCondition(): boolean
+
+package "dartCounter/pkg/game" {
+    class Game {
+        - match: interface
+        + NewGame(participants: []participant.Participant, startingScore: int): *Game
+        + StartMatch(participants: []participant.Participant, startingScore: int)
+        + UpdateScore(playerID: int, score: int)
+        + CheckWinCondition(): bool
+    }
 }
 
-class Player {
-    - name: String
-    - score: int
-    - throws: List<int>
-    + AddThrow(score: int)
+package "dartCounter/pkg/match" {
+    interface SinglePlayerMatch {
+        + UpdateScore(score: int)
+        + CheckWinCondition(): bool
+    }
+
+    interface TeamMatch {
+        + UpdateScore(teamID: int, score: int)
+        + CheckWinCondition(): bool
+    }
+
+    class SinglePlayerMatchImpl {
+        - player: participant.Participant
+        - startingScore: int
+    }
+
+    class TeamMatchImpl {
+        - teams: []participant.Participant
+        - startingScore: int
+    }
+
+    SinglePlayerMatch <|.. SinglePlayerMatchImpl
+    TeamMatch <|.. TeamMatchImpl
 }
 
-interface ScoringSystem {
-    + UpdateScore(player: Player, score: int)
-    + CheckWinCondition(player1: Player, player2: Player): boolean
+package "dartCounter/pkg/participant" {
+    interface Participant {
+        + UpdateScore(scoreChange: int)
+        + GetScore(): int
+    }
+
+    class Player {
+        - Name: string
+        - Score: int
+    }
+
+    class Team {
+        - Players: []*Player
+        - Score: int
+    }
+
+    Participant <|.. Player
+    Participant <|.. Team
 }
 
-class StandardScoring {
-    + UpdateScore(player: Player, score: int)
-    + CheckWinCondition(player1: Player, player2: Player): boolean
+package "dartCounter/pkg/scoring" {
+    interface ScoringSystem {
+        + CalculateScoreChange(p: participant.Participant, score: int)
+        + CheckWinCondition(p: participant.Participant): bool
+    }
+
+    class StandardScoring {
+        - StartingScore: int
+    }
+
+    ScoringSystem <|.. StandardScoring
 }
 
-Game -right-> ScoringSystem : uses >
-ScoringSystem <|.. StandardScoring : implements
+Game --> "1" SinglePlayerMatch : match
+Game --> "1" TeamMatch : match
+SinglePlayerMatchImpl --> "1" Participant : player
+TeamMatchImpl --> "*" Participant : teams
+
 @enduml

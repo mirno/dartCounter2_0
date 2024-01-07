@@ -1,16 +1,20 @@
 package scoring
 
-import "dartCounter/pkg/player"
+import "dartCounter/pkg/participant"
 
-type StandardScoring struct{}
-
-func (s *StandardScoring) UpdateScore(p *player.Player, score int) {
-	if score <= p.Score {
-		p.Score -= score
-	}
-	// Additional scoring logic can be added here
+type StandardScoring struct {
+    StartingScore int
 }
 
-func (s *StandardScoring) CheckWinCondition(p1, p2 *player.Player) bool {
-	return p1.Score == 0 || p2.Score == 0
+func NewStandardScoring(startingScore int) *StandardScoring {
+    return &StandardScoring{StartingScore: startingScore}
+}
+
+func (ss *StandardScoring) CalculateScoreChange(p participant.Participant, score int) {
+    // Subtract score from participant's current score
+    p.UpdateScore(-score)
+}
+
+func (ss *StandardScoring) CheckWinCondition(p participant.Participant) bool {
+    return p.GetScore() == 0
 }

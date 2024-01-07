@@ -1,8 +1,8 @@
 package scoring
 
-import "dartCounter/pkg/player"
+import "dartCounter/pkg/participant"
 
 type ScoringSystem interface {
-	UpdateScore(p *player.Player, score int)
-	CheckWinCondition(p1, p2 *player.Player) bool
+    CalculateScoreChange(p participant.Participant, score int)
+    CheckWinCondition(p participant.Participant) bool
 }
