@@ -1,0 +1,59 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+package "SPA (drivers)" {
+  [Setup View]
+  [Scoring View]
+}
+
+package "Application (usecases)" {
+  [Match Orchestrator]
+}
+
+package "Domain (entities + rules)" {
+  [State Reducer]
+  [Score Event]
+  [Match State]
+}
+
+package "Adapters" {
+  [LocalStorage Adapter]
+}
+
+[Setup View] --> [Match Orchestrator] : startMatch(setup)
+[Scoring View] --> [Match Orchestrator] : applyScore(value)
+[Scoring View] --> [Match Orchestrator] : undo()
+[Match Orchestrator] --> [State Reducer] : reduce(setup, events)
+[State Reducer] --> [Score Event]
+[State Reducer] --> [Match State]
+[Match Orchestrator] --> [LocalStorage Adapter] : persist(setup, events)
+
+@enduml
+
+@startuml
+skinparam shadowing false
+title Apply Score and Undo (Event-Replay)
+
+actor User
+participant "Scoring View" as UI
+participant "Match Orchestrator" as App
+participant "State Reducer" as Reducer
+participant "LocalStorage Adapter" as Store
+
+User -> UI : Enter score + submit
+UI -> App : create SCORE event
+App -> App : append event to event log
+App -> Reducer : deriveGameState(setup, events)
+Reducer --> App : new deterministic state
+App -> Store : persist(setup, events)
+App --> UI : render(state)
+
+User -> UI : Undo
+UI -> App : pop latest event
+App -> Reducer : deriveGameState(setup, events-1)
+Reducer --> App : prior deterministic state
+App -> Store : persist(setup, events-1)
+App --> UI : render(restored state)
+
+@enduml

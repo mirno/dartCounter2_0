@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Codex DartCounter</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header>
+        <h1>DartCounter</h1>
+        <p>SPA scoring for 1v1 and 2v2 with legs, sets, and deterministic undo.</p>
+      </header>
+
+      <p id="error-box" class="error"></p>
+
+      <section id="setup-view">
+        <h2>Match Setup</h2>
+        <form id="setup-form" class="panel">
+          <label>
+            Mode
+            <select id="mode" name="mode">
+              <option value="1v1">1v1</option>
+              <option value="2v2">2v2</option>
+            </select>
+          </label>
+
+          <label>
+            Side 1 name
+            <input type="text" name="side1Name" value="Side 1" required />
+          </label>
+
+          <label>
+            Side 2 name
+            <input type="text" name="side2Name" value="Side 2" required />
+          </label>
+
+          <fieldset id="mode-1v1-fields">
+            <legend>Players (1v1)</legend>
+            <label>
+              Player 1
+              <input type="text" name="player1Name" value="Player 1" required />
+            </label>
+            <label>
+              Player 2
+              <input type="text" name="player2Name" value="Player 2" required />
+            </label>
+          </fieldset>
+
+          <fieldset id="mode-2v2-fields" hidden>
+            <legend>Teams (2v2)</legend>
+            <label>
+              Team 1 - Player 1
+              <input type="text" name="team1Player1" value="Team 1 - Player 1" required />
+            </label>
+            <label>
+              Team 1 - Player 2
+              <input type="text" name="team1Player2" value="Team 1 - Player 2" required />
+            </label>
+            <label>
+              Team 2 - Player 1
+              <input type="text" name="team2Player1" value="Team 2 - Player 1" required />
+            </label>
+            <label>
+              Team 2 - Player 2
+              <input type="text" name="team2Player2" value="Team 2 - Player 2" required />
+            </label>
+          </fieldset>
+
+          <label>
+            Starting score
+            <input type="number" name="startingScore" value="501" min="2" required />
+          </label>
+
+          <label>
+            Legs to win set
+            <input type="number" name="legsToWinSet" value="3" min="1" required />
+          </label>
+
+          <label>
+            Sets to win match
+            <input type="number" name="setsToWinMatch" value="2" min="1" required />
+          </label>
+
+          <label>
+            Finish hint threshold
+            <input type="number" name="finishHintThreshold" value="170" min="2" max="180" required />
+          </label>
+
+          <label>
+            First leg starter
+            <select name="firstLegStarterSide">
+              <option value="0">Side 1</option>
+              <option value="1">Side 2</option>
+            </select>
+          </label>
+
+          <button type="submit">Start Match</button>
+        </form>
+      </section>
+
+      <section id="match-view" hidden>
+        <div class="panel controls">
+          <p id="status-text"></p>
+          <p id="turn-text"></p>
+          <p id="finish-badge" class="badge badge-off">No finish</p>
+
+          <div class="row">
+            <label>
+              Visit score
+              <input type="number" id="score-input" min="0" max="180" />
+            </label>
+            <button id="add-score" type="button">Apply Score</button>
+            <button id="undo" type="button">Undo</button>
+            <button id="new-match" type="button">New Match</button>
+          </div>
+        </div>
+
+        <section id="scoreboards" class="scoreboards"></section>
+
+        <section class="panel">
+          <h3>Recent Events</h3>
+          <ul id="events"></ul>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.mjs"></script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+:root {
+  --bg: #f5f1e8;
+  --panel: #fffaf2;
+  --ink: #1d2a35;
+  --accent: #2a7f62;
+  --accent-2: #cd6f32;
+  --error: #9f1f1f;
+  --line: #d9cdb9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%, #fff7e7 0%, transparent 40%),
+    radial-gradient(circle at 90% 90%, #e7f7ed 0%, transparent 45%),
+    var(--bg);
+}
+
+main.app-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.2rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+form.panel,
+fieldset {
+  display: grid;
+  gap: 0.8rem;
+}
+
+label {
+  display: grid;
+  gap: 0.3rem;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  padding: 0.5rem;
+}
+
+button {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+.error {
+  color: var(--error);
+  min-height: 1.3rem;
+}
+
+.row {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  align-items: end;
+}
+
+.scoreboards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.8rem;
+}
+
+.score-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.8rem;
+}
+
+.score-card.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px #d6f0e6;
+}
+
+.score-value {
+  font-size: 2rem;
+  color: var(--accent-2);
+  margin: 0.2rem 0;
+}
+
+.badge {
+  display: inline-block;
+  border-radius: 16px;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid transparent;
+}
+
+.badge-on {
+  background: #dff3e9;
+  border-color: #8bc9aa;
+  color: #1d6b4f;
+}
+
+.badge-off {
+  background: #f2ede3;
+  border-color: #d8cab2;
+  color: #4d4a41;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+@media (max-width: 640px) {
+  main.app-shell {
+    padding: 0.8rem;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

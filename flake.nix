@@ -23,7 +23,16 @@
         {
           default = pkgs.mkShell {
             packages = [
+              pkgs.brave
               pkgs.go
+              pkgs.nodejs
+              pkgs.python312
+              pkgs.gnumake
+              pkgs.just
+              pkgs.remake
+              pkgs.plantuml
+              pkgs.graphviz
+              pkgs.cocogitto
               pkgs.gotests
               pkgs.richgo
               pkgs.lefthook
